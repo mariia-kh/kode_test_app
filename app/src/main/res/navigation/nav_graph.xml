@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/recipeListFragment">
+
+    <fragment
+        android:id="@+id/recipeListFragment"
+        android:name="com.mariiakhakimova.kodetestapp.ui.recipelist.RecipeListFragment"
+        tools:layout="@layout/recipe_list_fragment">
+
+        <action
+            android:id="@+id/action_RecipeListFragment_to_RecipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.mariiakhakimova.kodetestapp.ui.recipe.RecipeFragment"
+        tools:layout="@layout/recipe_fragment"/>
+
+</navigation>

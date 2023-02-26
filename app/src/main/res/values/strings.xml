@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KodeTestApp</string>
+    <string name="title">Recipe</string>
+    <string name="difficulty">Difficulty: %d</string>
+</resources>
