@@ -5,6 +5,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mariiakhakimova.kodetestapp.R
@@ -39,21 +40,23 @@ class RecipeFragment : Fragment() {
     }
 
     private fun extractData() {
-        val recipe: Recipe = requireArguments().getSerializable(RECEPT) as Recipe
-        binding.tvName.text = recipe.name
-        Picasso.get()
-            .load(recipe.images[0])
-            .into(binding.ivImage)
-        binding.tvDifficulty.text = getString(R.string.difficulty, recipe.difficulty)
-        binding.tvDescription.text = recipe.description
-        binding.tvInstructions.text = Html.fromHtml(recipe.instructions)
-        val lastUpdated = recipe.lastUpdated * 1000L
-        binding.tvLastUpdated.text = SimpleDateFormat(dd_MM_yyyy_FORMAT).format(lastUpdated)
-
+        val recipe: Recipe = requireArguments().getSerializable(RECIPE) as Recipe
+        with(binding) {
+            tvName.text = recipe.name
+            Picasso.get()
+                .load(recipe.images[0])
+                .into(ivImage)
+            tvDifficulty.text = getString(R.string.difficulty, recipe.difficulty)
+            tvDescription.isVisible = !recipe.description.isNullOrEmpty()
+            tvDescription.text = recipe.description
+            tvInstructions.text = Html.fromHtml(recipe.instructions)
+            val lastUpdated = recipe.lastUpdated * 1000L
+            tvLastUpdated.text = SimpleDateFormat(dd_MM_yyyy_FORMAT).format(lastUpdated)
+        }
     }
 
     companion object {
-        const val RECEPT = "recept"
+        const val RECIPE = "recipe"
         const val dd_MM_yyyy_FORMAT = "dd.MM.yyyy"
     }
 }

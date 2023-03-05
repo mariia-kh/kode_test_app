@@ -20,7 +20,7 @@ class RecipeItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(recipe: Recipe, recipeInfoListener: RecipeInfoListener) {
         tvName.setText(recipe.name)
         tvDescription.setText(recipe.description)
-        tvDifficulty.setText(recipe.difficulty.toString())
+        tvDifficulty.text = tvDifficulty.context.getString(R.string.difficulty, recipe.difficulty)
         Picasso.get()
             .load(recipe.images[0])
             .into(ivImage)
